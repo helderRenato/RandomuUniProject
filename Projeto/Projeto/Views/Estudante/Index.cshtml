@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Projeto.Models.Post>
+
+@{
+    ViewData["Title"] = "Estudante";
+}
+@*Load de todos os posts criados*@
+<div class = "Usuario">
+    <div class = "title">
+        <h1>Notícias Escolares</h1>
+        <img src = "~/images/news.svg"/>
+    </div>
+
+    @*Load dos posts da newsletter da universidade *@
+    @foreach(var items in Model.OrderByDescending(i => i.RegistrationDate))
+    {
+    <div class = "Post">
+        <div class = "Post__text">@items.Texto</div>
+        <div class = "Post__photo">
+            @if (!string.IsNullOrEmpty(items.Fotografia)) {
+                <img src="~/Photos/User/@items.Fotografia"/>
+            }
+        </div>
+    </div>
+    }
+</div>

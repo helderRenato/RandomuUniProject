@@ -1,0 +1,40 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class = "Login">
+    <div class = "user__png">
+        <img src = "~/images/user.png"/>
+    </div>
+    <form id = "account" method = "post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @*Input de Email*@
+        <label for = "email">Email*</label>
+        <input type = "email" id = "email" asp-for="Input.Email" class = "inputRandomu" autocomplete="username" aria-required="true"/>
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+        @*Input de Password*@
+        <label for = "passw">Password*</label>
+        <input type ="password" id = "passw" class = "inputRandomu" asp-for = "Input.Password" autocomplete = "username" aria-required="true"/>
+        <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+        @*Input Remember me*@
+        <div>
+            <div class="checkbox">
+                <label asp-for="Input.RememberMe" class="form-label">
+                    <input class="form-check-input" asp-for="Input.RememberMe" />
+                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                </label>
+            </div>
+        </div>
+
+       <button type ="submit" class ="submitButton">Entrar</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

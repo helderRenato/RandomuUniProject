@@ -1,0 +1,37 @@
+﻿.Universidade {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    padding: 20px; 
+    max-width: 600px; 
+    margin: 80px auto; 
+}
+
+.Universidade .title{
+    display: flex; 
+    align-items: center; 
+}
+
+.Universidade #thumbnail input{
+    display:none; 
+}
+
+.Universidade .addPhotoPost{
+    margin-bottom: 20px;
+    border: 1px dashed #ddd;
+    background-size: cover;
+    cursor: pointer;
+    height: 160px;
+
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.Universidade #thumbnail.inputWithImage{
+    border: 0; 
+}
+
+.Universidade #thumbnail.inputWithImage img{
+    height: 200px; }

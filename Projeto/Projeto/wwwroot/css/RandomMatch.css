@@ -1,0 +1,25 @@
+﻿.RandomMatch form{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 80px auto; 
+    flex-direction: column; 
+}
+.RandomMatch p{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000000;
+    margin-bottom: 30px; 
+}
+
+.RandomMatch button {
+    background: #42ADE2;
+    border-radius: 10px;
+    width: 300px; 
+    height: 30px; 
+    outline: none; 
+    color: #fff; 
+    border: none; 
+}

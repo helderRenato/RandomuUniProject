@@ -1,0 +1,87 @@
+﻿.Register{
+    padding-left: 30px; 
+    padding-right: 30px; 
+}
+
+.Register label{
+    margin-top: 20px; 
+}
+.Register .inputRandomu {
+    width: 100%; 
+    height: 50px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #C2C2C2;
+    outline: none;
+}
+
+.Register .submitButton {
+    width: 100px;
+    height: 40px;
+    background: #4AFF5C;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    margin-top: 10px; 
+}
+
+.Register form#uniForm{
+    display: flex; 
+    flex-direction: column; 
+}
+
+.Register form#userForm{
+    display: flex; 
+    justify-content: space-evenly; 
+}
+
+.Register form#uniForm aside{
+    max-width: 800px; 
+    width: 100%; 
+    display:flex; 
+    flex-direction: column; 
+}
+
+.Register form#userForm aside{
+    max-width: 800px; 
+    width: 100%; 
+    display:flex; 
+    flex-direction: column; 
+}
+
+.Register form#userForm article label{
+    background: rgba(196, 196, 196, 0.19); 
+    border-radius: 100px; 
+    padding: 40px; 
+    cursor: pointer; 
+    background-size: cover ;
+}
+
+.Register form#userForm article label.inputWithImage{
+   padding: 0px;
+}
+
+.Register form#userForm article label img#imagePreview.has-thumbnail{
+    width: 200px; 
+    height: 200px; 
+    border-radius: 100px; 
+}
+.Register form#userForm article input{
+    display: none; 
+}
+
+@media (max-width: 1054px){
+    .Register form#userForm {
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+        flex-direction: column; 
+    }
+    .Register form#uniForm{
+        display: flex;
+        justify-content: center;
+        align-items:center; 
+        flex-direction: column;
+    }
+
+}

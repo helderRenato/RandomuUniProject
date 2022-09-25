@@ -1,0 +1,144 @@
+﻿@page
+@model RegisterModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+<article class = "Register">
+    <div class = "selectRole" style = "margin-bottom: 20px; ">
+        @*Role de User "usuario"*@
+        <label for = "user">Usuário</label>
+        <input type="checkbox" id = "user" checked = "checked" class="checkboxes" onclick = "valueChanged(this)"/>
+
+        @*Role de Admin "universidade"*@
+        <label for = "uni">Universidade</label>
+        <input type="checkbox" id="uni" class="checkboxes" onclick = "valueChanged(this)"/>
+    </div>
+
+    @*Formulário Para a User*@
+    <form id="userForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+         <article>
+            @*Input de Fotografias*@
+            <div class = "form-group">
+                <label for = "fotografia" id = "thumbnail">
+                    <img src = "~/images/camera.svg" id = "imagePreview"/>
+                    <input type = "file" id = "fotografia" accept=".jpg,.png" name = "fotoUser" asp-for = "Input.Estudante.Fotografia" aria-required = "true"/>
+                </label>
+                <p>Adicione uma Fotografia</p>
+            </div>
+        </article>
+
+        <aside>
+        @*Input da universidade do usuário*@
+        <select class="inputRandomu" id="FormControlSelect1" asp-for = "Input.Estudante.UniversidadeFK" required>
+            <option selected disabled>Que universidade frequenta...</option>
+                @foreach (var item in Model.Universidades){
+                    <option value="@item.Id">@item.Nome</option>
+                }
+        </select>
+
+        @*Input do username do usuário*@
+        <label for = "username">Username*</label>
+        <input id = "username" asp-for="Input.Estudante.UserName" class="inputRandomu" autocomplete="username" aria-required="true"/>
+        <span asp-validation-for="Input.Estudante.UserName" class="text-danger"></span>
+
+        @*Input do email do usuário*@
+        <label for = "email">Email*</label>
+        <input id = "email" asp-for="Input.EmailEstudante" class="inputRandomu" autocomplete="username" aria-required="true"/>
+        <span asp-validation-for="Input.EmailEstudante" class="text-danger"></span>
+
+        @*Input da Password do usuário*@
+        <label for = "passw">Password*</label>
+        <input id = "passw" asp-for="Input.PasswordEstudante" class="inputRandomu" autocomplete="username" aria-required="true"/>
+        <span asp-validation-for="Input.PasswordEstudante" class="text-danger"></span>
+
+        @*Confirmar Password do usuário*@
+        <label for = "confirmPasswUsu">Confirmar Password*</label>
+        <input id = "confirmPasswUsu" asp-for="Input.ConfirmPasswordEstudante" class="inputRandomu" autocomplete="username" aria-required="true"/>
+        <span asp-validation-for="Input.ConfirmPasswordEstudante" class="text-danger"></span>
+
+        @*Botão de submeter*@
+        <button id="registerSubmit1" type="submit" class="submitButton">Register</button>
+        </aside>
+    </form>
+
+    @*Formulário Para a Universidade*@
+    <form id="uniForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" style = "display: none">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <aside>
+        @*Nome da Universidade*@
+        <label for = "nome">Nome da Universidade*</label>
+        <input id = "nome" asp-for="Input.Universidade.Nome" class="inputRandomu" autocomplete="username" aria-required="true"/>
+        <span asp-validation-for="Input.Universidade.Nome" class="text-danger"></span>
+        
+       @*Input do email da universidade*@
+        <label for = "email">Email*</label>
+        <input id = "email" asp-for="Input.EmailUniversidade" class="inputRandomu" autocomplete="username" aria-required="true"/>
+        <span asp-validation-for="Input.EmailUniversidade" class="text-danger"></span>
+
+        @*Input da Password da universidade*@
+        <label for = "passw">Password*</label>
+        <input id = "passw" asp-for="Input.PasswordUniversidade" class="inputRandomu" autocomplete="username" aria-required="true" required/>
+        <span asp-validation-for="Input.PasswordUniversidade" class="text-danger"></span>
+
+        @*Confirmar Password da universidade*@
+        <label for = "confirmPasswUni">Confirmar Password*</label>
+        <input id = "confirmPasswUni" asp-for="Input.ConfirmPasswordUniversidade" class="inputRandomu" autocomplete="username" aria-required="true"/>
+        <span asp-validation-for="Input.ConfirmPasswordUniversidade" class="text-danger"></span>
+
+        <button id="registerSubmit2" type="submit" class="submitButton">Register</button>
+        </aside>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+   //check box 
+    var checkboxes = document.getElementsByClassName("checkboxes");
+  
+    function valueChanged(checkbox) {
+        //mudar estados da check box caso uma esteje em estado checked
+    	for(var i = 0; i < checkboxes.length; i++)
+    	{
+    		if(checkboxes[i].checked == true)
+    		{
+    			checkboxes[i].checked = false;
+    		}
+    	}
+        if(checkbox.checked){
+            checkbox.checked = false
+        }else{
+            checkbox.checked = true
+        }
+        var uni = document.getElementById("uni").checked
+        var user = document.getElementById("user").checked
+        if(user){
+            document.getElementById("userForm").style.display='flex'; //mostrar o form do user
+            document.getElementById("uniForm").style.display='none'; //esconder o form da universidade
+        }else{
+            document.getElementById("userForm").style.display='none'; //esconder o form do user
+            document.getElementById("uniForm").style.display='flex'; //mostrar o form da universidade
+        }
+        //---
+    }
+    //Evento de preview da imagem 
+    $("#fotografia").change( function() {
+        var imagePreview = document.getElementById("imagePreview")
+        var fotografia = document.getElementById("fotografia").files[0]; 
+        var reader = new FileReader(); //criar url do ficheiro
+        reader.readAsDataURL(fotografia)
+        reader.onload = function (e) {
+            $("#imagePreview")
+                .attr("src", e.target.result)
+                .attr("class", "has-thumbnail")
+            $("#thumbnail")
+                .attr("class", "inputWithImage")
+        };
+    });
+</script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

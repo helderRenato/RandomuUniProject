@@ -1,0 +1,16 @@
+﻿@model Projeto.Models.Estudante; 
+
+@{
+    ViewData["Title"] = "Random Match";
+}
+
+@*Dentro de umas pessoas aleatórias na universidade escolher alguém para falar e criar uma conversa*@
+<div class = "RandomMatch">
+    <form method = "post">
+        <p>Diz Olá ao @Model.UserName <img src = "~/images/hi.svg"/></p>
+         @Html.HiddenFor(item => item.UserId)
+         @Html.HiddenFor(item => item.Fotografia)
+         @Html.HiddenFor(item => item.UserName)
+        <button type = "submit" >Enviar Mensagem</button>
+    </form>
+</div>

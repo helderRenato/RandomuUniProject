@@ -1,0 +1,63 @@
+﻿@page
+@model Projeto.Models.Estudante
+@using Microsoft.AspNetCore.Identity
+@using Projeto.Data; 
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject ApplicationDbContext _db; 
+<div class = "Chat">
+    <div class = "Chat__Usuarios">
+        @*Usuários com quem já conversei*@
+        @{
+            var currentUser = UserManager.GetUserId(User);
+            var chatUsers = _db.Chats
+                            .Where(a => a.Sender == currentUser);
+        }
+   
+         
+        @foreach (var item in chatUsers)
+        {
+            //Dados do receiver
+            var receiverData = _db.Estudantes
+                                  .Where(a => a.UserId == item.Receiver)
+                                  .FirstOrDefault(); 
+
+            <div class = "Chat__Usuario" onclick = "location.href='@Url.Action("Index", "Chat", new {userId = item.Receiver})'">
+                @if (receiverData.Fotografia == "user.png")
+                {
+                    <img src = "/images/user.png">
+                }
+                else
+                {
+                    <img src = "/Photos/User/@receiverData.Fotografia"/> 
+                }
+                <p>@receiverData.UserName</p>
+            </div> 
+        }
+    </div>
+
+    @*Mensagens*@
+     <div class = "Chat__Mensagens">
+        <div id = "messageArea">
+
+        <input type="hidden" id="usuario" class="form-control" value = "@currentUser" readonly />
+        <input type="hidden" id="userInput" value="@currentUser"/>
+        <input type="hidden" id="UserId" value="@ViewBag.UserID"/>
+
+        @*Write and Send*@
+        <div class="row">
+            <div class="col-2">Message</div>
+            <div class="col-4"><input type="text" id="messageInput" /></div>
+        </div>
+       <div class="row">
+            <div class="col-6">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>
+        
+    </div>
+</div>
+   
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

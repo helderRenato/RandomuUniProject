@@ -1,0 +1,27 @@
+﻿@model Projeto.Models.Post
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@*Para Criar um post a universidade deve escrever um texto obrigatório e / ou colocar uma fotografia *@
+@*O post criado tem que ir para a lista de posts da newsletter*@
+@*Identificar a newsletter desta universidade*@
+<form method="post" enctype="multipart/form-data">
+    <div class = "form-group">
+        <div class="form-group">
+            <label asp-for="Texto" class="control-label"></label>
+            <input asp-for="Texto" class="form-control" />
+            <span asp-validation-for="Texto" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for = "fotografia" asp-for="Fotografia" class="control-label addPhotoPost" id = "thumbnail">
+                <input type = "file" id = "fotografia" accept=".jpg,.png" name = "fotoPost" asp-for="Fotografia" class="form-control"/>
+            </label>
+            <span asp-validation-for="Fotografia" class="text-danger"></span>
+        </div>
+    </div>
+
+    <button type="submit">Postar</button>
+</form>

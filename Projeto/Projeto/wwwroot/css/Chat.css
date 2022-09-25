@@ -1,0 +1,88 @@
+﻿.Chat {
+    padding: 20px;
+    height: 80vh;
+}
+
+.Chat__Usuarios {
+    float: left;
+    overflow: hidden;
+    width: 20%;
+    border-right: 1px solid #c4c4c4;
+    height: 100%; 
+}
+
+.Chat__Usuario{
+    display: flex; 
+    align-items: center; 
+    cursor: pointer; 
+    margin-bottom: 5px; 
+}
+
+.Chat__Usuario:hover{
+    background-color: #eeeeee;
+    border-radius: 10px; 
+}
+
+.Chat__Usuario img{
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50px; 
+    margin-right: 10px; 
+}
+
+.Chat__Mensagens {
+    background: rgba(76, 130, 234, 0.08);
+    float: left;
+    padding: 30px 15px 0 25px;
+    width: 80%;
+    overflow-x: hidden; 
+    height: 100%; 
+}
+
+#mensagem {
+    border-radius: 10px;
+    max-width: fit-content;
+    border-radius: 5px;
+    padding: 5px 5px 0px 5px; 
+    margin: 5px;
+}
+
+#mensagem span{
+    font-weight: bolder; 
+    color: #fff; 
+}
+.Chat__Mensagem__Usuario{
+    background: #42ADE2;
+}
+
+.Chat__Mensagem__Receiver {
+    background: #517ACA;
+}
+
+.Chat__Mensagens form {
+    position: sticky;
+    top: 500px;
+    border-top: 1px solid rgb(218, 218, 218);
+    padding: 10px;
+    width: 100%;
+    display: flex; 
+    justify-content: center; 
+}
+
+.Chat__Mensagens form input{
+   width: 100%;
+}
+
+.Chat__Mensagens form button{
+    border: none; 
+    outline: none; 
+    border-radius: 20px; 
+    background-color: #4AFF5C; 
+    color: white; 
+    margin-left: 10px; 
+}
+
+.Chat__Mensagens #messageArea{
+    height: 85%; 
+    overflow: auto; 
+}
